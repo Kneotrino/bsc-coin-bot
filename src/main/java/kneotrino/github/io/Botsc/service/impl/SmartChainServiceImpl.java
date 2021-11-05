@@ -41,12 +41,12 @@ public class SmartChainServiceImpl implements SmartChainService {
                 .address(Address)
                 .apikey(applicationProperties.getBscApiKey())
                 .build();
-        ;
 
         log.info("bscRequest = " + bscRequest);
 
-        Map<String, Object> map = mapper.convertValue(bscRequest, new TypeReference<Map<String, Object>>() {
+        Map<String, Object> map = mapper.convertValue(bscRequest, new TypeReference<>() {
         });
+
         HttpResponse<BscResponse> response =
                 Unirest.get("/api")
                         .header("accept", "application/json")

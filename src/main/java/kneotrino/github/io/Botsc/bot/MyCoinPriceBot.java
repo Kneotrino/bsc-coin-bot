@@ -1,6 +1,5 @@
 package kneotrino.github.io.Botsc.bot;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kneotrino.github.io.Botsc.config.ApplicationProperties;
 import kneotrino.github.io.Botsc.dto.response.BscResponse;
@@ -45,6 +44,8 @@ public class MyCoinPriceBot extends TelegramLongPollingBot {
         ObjectMapper mapper = ObjectMapperUtil.GetDefaultModelMapper();
 
         String command = update.getMessage().getText();
+        log.info("command = " + command);
+        log.info("chatId = " + update.getMessage().getChatId());
         boolean reply = false;
 
         SendMessage message = new SendMessage();
@@ -56,11 +57,7 @@ public class MyCoinPriceBot extends TelegramLongPollingBot {
 
         if (command.equals("/balances")) {
             BscResponse balance = service.getBalance(applicationProperties.getBscApiAddress());
-            try {
-                message.setText(mapper.writeValueAsString(balance));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            message.setText(balance.getToken().concat(": ".concat(balance.getBalance().toString())));
             reply = true;
         }
 
