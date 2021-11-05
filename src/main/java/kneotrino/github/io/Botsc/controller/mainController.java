@@ -1,10 +1,10 @@
 package kneotrino.github.io.Botsc.controller;
 
+import kneotrino.github.io.Botsc.dto.response.BscResponse;
 import kneotrino.github.io.Botsc.dto.response.GlobalResponse;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import kneotrino.github.io.Botsc.service.SmartChainService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : Kneotrino
@@ -16,10 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class mainController {
 
+    @Autowired
+    SmartChainService service;
+
     @GetMapping("/ping")
     public GlobalResponse<String> ping() {
         return new GlobalResponse<>("Ping Success", "ping");
+    }
 
+    @GetMapping("/getBalance")
+    public GlobalResponse<BscResponse> getBalance(
+            @RequestParam("address") String address
+    ) {
+        BscResponse balance = service.getBalance(address);
+        return new GlobalResponse<>(balance, "getBalance Address : " + address);
     }
 
 

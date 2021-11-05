@@ -31,6 +31,18 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.5.2</version>
         </dependency>
+        <!-- Pull in as a traditional dependency -->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>core</artifactId>
+            <version>4.8.7</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.projectlombok</groupId>

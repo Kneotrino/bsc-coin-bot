@@ -17,4 +17,9 @@ public class ApplicationProperties {
     private String telegramBotName;
     @Value("${telegram.bot.key}")
     private String telegramBotKey;
+
+    @Value("${bsc.api.key}")
+    private String bscApiKey;
+    @Value("${bsc.api.address}")
+    private String bscApiAddress;
 }
